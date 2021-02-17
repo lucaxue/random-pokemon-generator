@@ -1,0 +1,7 @@
+.pokemon-viewer img {
+  width: 300px;
+}
+
+.pokemon-viewer h2 {
+  text-transform: capitalize;
+}

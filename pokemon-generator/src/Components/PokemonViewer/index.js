@@ -1,9 +1,10 @@
 import React, { useReducer, useEffect } from 'react';
+import './index.css';
 
 const initialPokemon = {
-  name: "",
+  name: '',
   sprites: {
-    front_default:"",
+    front_default: '',
   },
 };
 
@@ -17,14 +18,10 @@ function reducer(state, action) {
 }
 
 function PokemonViewer({ id }) {
-  // TODO: send http request to `https://pokeapi.co/api/v2/pokemon/${id}` and display the data!
-  // HINT: you will need useState and useEffect!
   const [pokemon, dispatch] = useReducer(reducer, initialPokemon);
 
   async function getPokemon() {
-    console.log(process.env.REACT_APP_POKEMON_API_URL);
     let res = await fetch(`${process.env.REACT_APP_POKEMON_API_URL}/${id}`);
-    // let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     let data = await res.json();
     dispatch({ type: 'POKEMON', payload: data });
   }
@@ -34,11 +31,11 @@ function PokemonViewer({ id }) {
 
   return (
     <div className="pokemon-viewer">
-      <p>{pokemon.name}</p>
       <img
         src={pokemon.sprites.front_default}
         alt={`${pokemon.name} front sprite`}
       />
+      <h2>{pokemon.name}</h2>
     </div>
   );
 }

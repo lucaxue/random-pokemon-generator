@@ -11,7 +11,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <h1>Random Pokemon Generator!</h1>
       {/* TODO: call handleClick when button clicked */}
       <button onClick={handleClick}>Get Random Pokemon</button>

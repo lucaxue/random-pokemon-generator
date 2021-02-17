@@ -1,3 +1,28 @@
-body {
-	text-align: center;
+.app {
+  text-align: center;
+  color: aliceblue;
+}
+
+.app h1 {
+  font-size: 100px;
+}
+
+.app button {
+  background-color: #bdbdbd;
+  border-radius: 28px;
+  border: 1px solid #a1a1a1;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-weight: bolder;
+  font-size: 50px;
+  padding: 16px 31px;
+  text-decoration: none;
+}
+.app button:hover {
+  background-color: #b4b4b4;
+}
+.app button:active {
+  position: relative;
+  top: 1px;
 }
