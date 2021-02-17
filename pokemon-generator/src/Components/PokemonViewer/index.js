@@ -1,10 +1,9 @@
 import React, { useReducer, useEffect } from 'react';
 
 const initialPokemon = {
-  name: 'pikachu',
+  name: "",
   sprites: {
-    front_default:
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
+    front_default:"",
   },
 };
 
@@ -23,7 +22,9 @@ function PokemonViewer({ id }) {
   const [pokemon, dispatch] = useReducer(reducer, initialPokemon);
 
   async function getPokemon() {
-    let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    console.log(process.env.REACT_APP_POKEMON_API_URL);
+    let res = await fetch(`${process.env.REACT_APP_POKEMON_API_URL}/${id}`);
+    // let res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     let data = await res.json();
     dispatch({ type: 'POKEMON', payload: data });
   }
