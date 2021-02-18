@@ -1,13 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import './index.css';
 
-const initialPokemon = {
-  name: '',
-  sprites: {
-    front_default: '',
-  },
-};
-
 function reducer(state, action) {
   switch (action.type) {
     case 'POKEMON':
@@ -18,24 +11,24 @@ function reducer(state, action) {
 }
 
 function PokemonViewer({ id }) {
-  const [pokemon, dispatch] = useReducer(reducer, initialPokemon);
+  const [pokemon, dispatch] = useReducer(reducer, null);
 
-  async function getPokemon() {
-    let res = await fetch(`${process.env.REACT_APP_POKEMON_API_URL}/${id}`);
-    let data = await res.json();
-    dispatch({ type: 'POKEMON', payload: data });
-  }
   useEffect(() => {
+    async function getPokemon() {
+      let res = await fetch(`${process.env.REACT_APP_POKEMON_API_URL}/${id}`);
+      let data = await res.json();
+      dispatch({ type: 'POKEMON', payload: data });
+    }
     getPokemon();
   }, [id]);
 
   return (
     <div className="pokemon-viewer">
       <img
-        src={pokemon.sprites.front_default}
-        alt={`${pokemon.name} front sprite`}
+        src={pokemon ? pokemon.sprites.front_default : ''}
+        alt={`${pokemon ? pokemon.name : ''} front sprite`}
       />
-      <h2>{pokemon.name}</h2>
+      <h2>{pokemon ? pokemon.name : ''}</h2>
     </div>
   );
 }
